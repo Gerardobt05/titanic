@@ -35,9 +35,75 @@ function principal(){
      grafico_clases();
 
       // Realiza un gráfico circular de hombres y mujeres
-     // Realiza un gráfico circular con los supervivientes de hombres y mujeres 
-      // Realiza un gráfico en barras de hombres y mujeres supervivientes por cada clase
+      function hombres_mujeres(){
 
+        const canvas = document.getElementById('hombresMujeres');
+        new Chart(canvas,
+       
+        {
+          type: 'pie',
+          data: {
+            labels: ["Hombres", "Mujeres"],
+            datasets: [
+              {
+                label: 'Hombres y Mujeres',
+                data:[ pasajeros_titanic.filter(p=>p.sex =="male").length, pasajeros_titanic.filter(p=>p.sex =="female").length]
+              }
+            ]
+          }
+        });
+     
+     }
+     hombres_mujeres();
+     // Realiza un gráfico circular con los supervivientes de hombres y mujeres 
+     function supervivientesHombres_mujeres(){
+
+      const canvas = document.getElementById('supervivientesHombres_mujeres');
+      new Chart(canvas,
+     
+      {
+        type: 'pie',
+        data: {
+          labels: ["Hombres", "Mujeres"],
+          datasets: [
+            {
+              label: 'Hombres y Mujeres',
+              data:[ pasajeros_titanic.filter(p=>p.sex =="male" & p.survived =="1").length, pasajeros_titanic.filter(p=>p.sex =="female" & p.survived =="1").length]
+              
+            }
+          ]
+        }
+      });
+   
+   }
+   supervivientesHombres_mujeres();
+      // Realiza un gráfico en barras de hombres y mujeres supervivientes por cada clase
+      function ClasesSupervivientesHombres_mujeres(){
+
+        const canvas = document.getElementById('ClasesSupervivientesHombres_mujeres');
+        new Chart(canvas,
+       
+        {
+          type: 'bar',
+          data: {
+            labels: ["Hombres", "Mujeres"],
+            datasets: [
+              {
+                label: 'Hombres y Mujeres',
+                data:[ pasajeros_titanic.filter(p=>p.sex =="male" & p.survived =="1" &  p.pclass=="1").length, 
+                pasajeros_titanic.filter(p=>p.sex =="male" & p.survived =="1" &  p.pclass=="2").length,
+                pasajeros_titanic.filter(p=>p.sex =="male" & p.survived =="1" &  p.pclass=="3").length,
+                pasajeros_titanic.filter(p=>p.sex =="female" & p.survived =="1" & p.pclass=="1").length,
+                pasajeros_titanic.filter(p=>p.sex =="female" & p.survived =="1" & p.pclass=="2").length
+                ,pasajeros_titanic.filter(p=>p.sex =="female" & p.survived =="1" & p.pclass=="3").length]
+                
+              }
+            ]
+          }
+        });
+     
+     }
+     ClasesSupervivientesHombres_mujeres();
     /*  ########################
         #  Muestra por consola #
         ########################
@@ -156,5 +222,4 @@ function imprimirNombreCiudades(){
 function imprimirNombreMujeres(){
    pasajeros_titanic.filter(p => p.sex === "female").map(p=>p.name).forEach(p=>console.log(p));
 }
-
 
