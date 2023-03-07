@@ -26,7 +26,7 @@ function configuracion() {
 }
 
 function principal(){
-
+  generaTabla();
   console.log("Total pasajeros_titanic: "+ pasajeros_titanic.length);
 
      // Muestra gráfico circular de supervivientes y muertos
@@ -191,7 +191,29 @@ function principal(){
     });
   }
 
+function generaTabla(){
+    var tabla = document.getElementById("tabla");
+    for(var i=0; i<pasajeros_titanic.filter(p=>p.from.includes("Spain")); i++){
+      var fila = document.createElement("tr");
+    /*  for(var j=0; j<2; j++){
+        var celda = document.createElement("td");
+        var textoCelda = document.createTextNode("Celda "+ i + "," + j);
+        celda.append(textoCelda);
+        fila.appendChild(celda);
 
+      }*/
+      var celda = document.createElement("td");
+      var textoCelda = document.createTextNode(pasajeros_titanic[i].name);
+      celda.append(textoCelda);
+      fila.appendChild(celda);
+      tabla.appendChild(fila);
+
+    }  
+    tabla.setAttribute("class", "table table-danger");
+
+
+
+}
 
 
 /** Función que devuelve los barcos */
@@ -222,4 +244,3 @@ function imprimirNombreCiudades(){
 function imprimirNombreMujeres(){
    pasajeros_titanic.filter(p => p.sex === "female").map(p=>p.name).forEach(p=>console.log(p));
 }
-
